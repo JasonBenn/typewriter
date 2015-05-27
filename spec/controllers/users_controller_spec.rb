@@ -10,8 +10,28 @@ describe UsersController, type: :controller do
       get :index, format: :json
     end
 
-    it 'returns all listings' do
-      expect(json.length).to equal 2
+    context 'when authorized' do
+      before do
+        login @teacher
+        get :index, format: :json
+      end
+
+      it 'returns all listings' do
+        expect(response).to have_http_status 200
+        expect(json.length).to equal 2
+      end
     end
+
+    context "when unauthorized" do
+      before do
+        login @jason
+        get :index, format: :json
+      end
+
+      it "returns no listings" do
+        expect(response).to have_http_status(401)
+      end
+    end
+
   end
 end

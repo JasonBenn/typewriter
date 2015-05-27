@@ -31,7 +31,7 @@ RSpec.describe SessionsController, type: :controller do
 
   describe "POST /logout" do
     before do
-      session[:user] = 1
+      login FactoryGirl.create :jason
       post :destroy, format: :json
     end
 

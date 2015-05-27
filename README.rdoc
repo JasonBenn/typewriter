@@ -2,12 +2,24 @@ DONE:
 Create users model
 Seed for users
 GET users
+test with http://ahimmelstoss.github.io/blog/2014/07/27/testing-a-rails-api-with-rspec/
+
+IN PROGESS:
+build/test session.
 
 NEXT:
-test with http://ahimmelstoss.github.io/blog/2014/07/27/testing-a-rails-api-with-rspec/
-build ession.
 A user gets a valid session token by signing in, otherwise can't get data.
 Changes the whole API. Identify yourself by session token, if teacher you get it, if your data you get it, otherwise 403 not authorized
+
+
+POST /login with username, password
+  200 user object with is_teacher
+  403 not authorized
+
+POST /logout
+
+current_user returns a User object 
+
 
 TYPEWRITER
 ----------

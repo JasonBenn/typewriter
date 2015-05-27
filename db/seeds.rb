@@ -1,7 +1,8 @@
 15.times do |n|
+  number = n.to_s
   User.create(
-    name: Faker::Name.first_name + Faker::Name.last_name,
-    password: Faker::Internet.password,
+    name: Faker::Name.first_name + number,
+    password: 'pw' + number,
     is_teacher: rand < 0.2
   )
 end

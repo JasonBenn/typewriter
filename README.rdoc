@@ -1,28 +1,58 @@
-== README
+TYPEWRITER
+----------
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+LOG IN or SIGN UP
 
-Things you may want to cover:
+SIGN UP:
+- get users/new
+Create USER
+- post users
+Log in automatically
+- post sessions
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- get sessions/new
+LOG IN
+- post sessions
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+WAITING ROOM: list of logged in users on right
+SESSION: after_save, after_destroy: Pusher
+
+TEACHER sees START button, when he clicks it, everyone sees TERM
+Pusher broadcasts
+
+TERM
+each user submits a SENTENCE
+SENTENCE: after_save, after_destroy: Pusher 
+users on right update with a check mark to show that they've submitted a sentence
+
+After all terms submitted: show all SENTENCES
+Vote SENTENCE up or down by creating RATING
+RATING: after_save, after_destroy: Pusher
+
+
+
+USER
+name: string
+password_digest: digest
+is_teacher: boolean
+has many SENTENCES
+
+SESSION
+name: string
+password: string
+
+WORD
+word: string
+definition: string
+has many SENTENCES
+
+SENTENCE
+sentence: string
+belongs to USER
+belongs to WORD
+
+RATING
+value: int
+belongs to SENTENCE
+belongs to USER

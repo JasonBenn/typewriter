@@ -45,8 +45,6 @@ After all terms submitted: show all SENTENCES
 Vote SENTENCE up or down by creating RATING
 RATING: after_save, after_destroy: Pusher
 
-
-
 USER
 name: string
 password_digest: digest

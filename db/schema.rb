@@ -11,7 +11,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150527172601) do
+ActiveRecord::Schema.define(version: 20150529002158) do
+
+  create_table "ratings", force: :cascade do |t|
+    t.integer  "value",       limit: 1
+    t.integer  "sentence_id"
+    t.integer  "user_id"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
+
+  add_index "ratings", ["sentence_id"], name: "index_ratings_on_sentence_id"
+  add_index "ratings", ["user_id", "sentence_id"], name: "index_ratings_on_user_id_and_sentence_id", unique: true
+  add_index "ratings", ["user_id"], name: "index_ratings_on_user_id"
+
+  create_table "sentences", force: :cascade do |t|
+    t.string   "sentence"
+    t.integer  "word_id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "sentences", ["user_id"], name: "index_sentences_on_user_id"
+  add_index "sentences", ["word_id", "user_id"], name: "index_sentences_on_word_id_and_user_id", unique: true
+  add_index "sentences", ["word_id"], name: "index_sentences_on_word_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
@@ -19,6 +43,13 @@ ActiveRecord::Schema.define(version: 20150527172601) do
     t.boolean  "is_teacher"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+  end
+
+  create_table "words", force: :cascade do |t|
+    t.string   "word"
+    t.string   "definition"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
